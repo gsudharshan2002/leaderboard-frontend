@@ -15,6 +15,7 @@ export default function Home() {
   const [selectedUser, setSelectedUser] = useState("");
   const [name, setName] = useState("");
   const [team, setTeam] = useState("");
+  const [msg,setmsg]=useState("");
 
   //  fetching and sort based on points and pass users to Leaderboard comp
 
@@ -36,6 +37,7 @@ export default function Home() {
     try {
       const points = Math.floor(Math.random() * 10) + 1; // random 1–10
       const res = await api.put(`/users/${selectedUser}`, { points });
+      setmsg(`${points} points added to ${res.data.name}`);
       fetchApi();
       
     } catch (err) {
@@ -50,6 +52,8 @@ export default function Home() {
     try {
       const res = await api.post("/users", { name, points: 0, team });
       alert(`${res.data.name} added`);
+      setmsg(`new user ${res.data.name} added with 0 Points`);
+
       fetchApi();
     } catch (err) {
       console.log(err);
@@ -128,6 +132,7 @@ export default function Home() {
               Submit
             </button>
           </div>
+          <h4 className=" p-8 text-2xl font-bold bg-gradient-to-r from-red-500 to-green-500">{msg}</h4>
         </div>
 
         {/*Leaderboard Panel */}

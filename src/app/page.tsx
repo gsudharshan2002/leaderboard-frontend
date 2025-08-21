@@ -132,7 +132,7 @@ export default function Home() {
               Submit
             </button>
           </div>
-          <h4 className=" p-8 text-2xl font-bold bg-gradient-to-r from-red-500 to-green-500">{msg}</h4>
+          {msg&&<h4 className=" p-8 text-2xl font-bold bg-gradient-to-r from-red-500 to-green-500 rounded-3xl shadow-md ">{msg.toUpperCase()}</h4>}
         </div>
 
         {/*Leaderboard Panel */}
